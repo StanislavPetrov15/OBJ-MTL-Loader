@@ -1,7 +1,7 @@
 USAGE <br />
  
 list<Material> materials; <br />
-int result = MTL_Loader::Parse_MTL(<filename>, materials); <br />
+int result = MTL_Loader::Parse_MTL(\<filename\>, materials); <br />
 MTL_Loader::Release(materials); <br />
 
 OBJ_Model model; <br />
