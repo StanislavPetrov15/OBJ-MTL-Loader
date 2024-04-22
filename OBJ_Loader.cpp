@@ -53,6 +53,8 @@
 
 //(PUBLIC)
 
+using MTL_Loader::Material;
+
 namespace OBJ_Loader
 {
     struct GeometricVertex
