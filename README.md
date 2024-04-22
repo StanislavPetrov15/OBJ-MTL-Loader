@@ -1,4 +1,4 @@
-© November 2021, Stanislav Petrov
+© 2024, Stanislav Petrov
 
 USAGE <br />
  
