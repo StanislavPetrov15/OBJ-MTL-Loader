@@ -1,10 +1,10 @@
-USAGE 
+USAGE <br /><br />
  
-list<Material> materials;
-int result = MTL_Loader::Parse_MTL(<filename>, materials);
-MTL_Loader::Release(materials);
+list<Material> materials; <br />
+int result = MTL_Loader::Parse_MTL(<filename>, materials); <br />
+MTL_Loader::Release(materials); <br /><br />
 
-OBJ_Model model;
-int result = Parse_OBJ(<filename>, model);
+OBJ_Model model; <br />
+int result = Parse_OBJ(<filename>, model); <br /><br />
 
 This project uses the f-code library (in my other repository).
