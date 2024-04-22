@@ -1,3 +1,5 @@
+© November 2021, Stanislav Petrov
+
 USAGE <br />
  
 list\<MTL_Loader::Material\> materials; <br />
