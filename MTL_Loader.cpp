@@ -447,34 +447,34 @@ namespace
        mm.Gain = 1 */
     struct Material
     {
-         string Name;
+        string Name;
 
-         //Color Reflectivity Attributes
+        //Color Reflectivity Attributes
 
-         B_AmbientReflectivity_Color* AmbientReflectivity_Color = nullptr; //element Ka
-         B_DiffuseReflectivity_Color* DiffuseReflectivity_Color = nullptr; //element Kd
-         B_SpecularReflectivity_Color* SpecularReflectivity_Color = nullptr; //element Ks
-         B_TransmissionFilter* TransmissionFilter = nullptr; //element Tf
-         DissolveFactor DissolveFactor_Color; //element d
-         float SpecularExponent_Color = -1.0; //element Ns
-         float OpticalDensity_Color = -1.0; //Ni
-         float Sharpness_Color = -1.0; //element sharpness
-         IlluminationModel IlluminationModel_Color; //element illum
+        B_AmbientReflectivity_Color* AmbientReflectivity_Color = nullptr; //element Ka
+        B_DiffuseReflectivity_Color* DiffuseReflectivity_Color = nullptr; //element Kd
+        B_SpecularReflectivity_Color* SpecularReflectivity_Color = nullptr; //element Ks
+        B_TransmissionFilter* TransmissionFilter = nullptr; //element Tf
+        DissolveFactor DissolveFactor_Color; //element d
+        float SpecularExponent_Color = -1.0; //element Ns
+        float OpticalDensity_Color = -1.0; //Ni
+        float Sharpness_Color = -1.0; //element sharpness
+        IlluminationModel IlluminationModel_Color; //element illum
 
-         //Texture Reflectivity Attributes
+        //Texture Reflectivity Attributes
 
-         bool AntiAliasing = false;
-         AmbientReflectivity_Texture* AmbientReflectivity_Texture = nullptr; //element map_Ka
-         DiffuseReflectivity_Texture* DiffuseReflectivity_Texture = nullptr;  //element map_Kd
-         SpecularReflectivity_Texture* SpecularReflectivity_Texture = nullptr; //element map_Ks
-         DissolveFactor_Texture* DissolveFactor_Texture = nullptr; //element map_d
-         SpecularExponent_Texture* SpecularExponent_Texture = nullptr; //element map_Ns
-         Decal_Texture* Decal_Texture = nullptr; //element decal
-         Bump_Texture* Bump_Texture = nullptr; //element bump
-         Displacement_Texture* Displacement_Texture = nullptr; //element disp
+        bool AntiAliasing = false;
+        AmbientReflectivity_Texture* AmbientReflectivity_Texture = nullptr; //element map_Ka
+        DiffuseReflectivity_Texture* DiffuseReflectivity_Texture = nullptr;  //element map_Kd
+        SpecularReflectivity_Texture* SpecularReflectivity_Texture = nullptr; //element map_Ks
+        DissolveFactor_Texture* DissolveFactor_Texture = nullptr; //element map_d
+        SpecularExponent_Texture* SpecularExponent_Texture = nullptr; //element map_Ns
+        Decal_Texture* Decal_Texture = nullptr; //element decal
+        Bump_Texture* Bump_Texture = nullptr; //element bump
+        Displacement_Texture* Displacement_Texture = nullptr; //element disp
 
-         //Reflection Map Attributes
-         ReflectionMap* ReflectionMap = nullptr; //element refl
+        //Reflection Map Attributes
+        ReflectionMap* ReflectionMap = nullptr; //element refl
     };
 
     //(!) -о u v w : 'v' and 'w' are optional fields
@@ -582,18 +582,18 @@ namespace
                     //(FORMAT) Ka spectral file.rfl factor | Ka spectral file.rfl
                     if (attributes[0] == "spectral")
                     {
-                         AmbientReflectivity_Spectral* reflectivity = new AmbientReflectivity_Spectral;
+                        AmbientReflectivity_Spectral* reflectivity = new AmbientReflectivity_Spectral;
 
-                         reflectivity->File = attributes[1];
+                        reflectivity->File = attributes[1];
 
-                         if (attributes.count() == 3)
-                         {
-                             reflectivity->Factor = attributes[2].ToFloat();
-                         }
+                        if (attributes.count() == 3)
+                        {
+                            reflectivity->Factor = attributes[2].ToFloat();
+                        }
 
-                         newMaterial->AmbientReflectivity_Color = reinterpret_cast<B_AmbientReflectivity_Color*>(reflectivity);
+                        newMaterial->AmbientReflectivity_Color = reinterpret_cast<B_AmbientReflectivity_Color*>(reflectivity);
                     }
-                    //(FORMAT) Ka xyz <float> | Ka xyz x y z
+                        //(FORMAT) Ka xyz <float> | Ka xyz x y z
                     else if (attributes[0] == "xyz")
                     {
                         AmbientReflectivity_XYZ* reflectivity = new AmbientReflectivity_XYZ;
@@ -606,7 +606,7 @@ namespace
                             reflectivity->Y = value;
                             reflectivity->Z = value;
                         }
-                        //(FORMAT) Ka xyz x y z
+                            //(FORMAT) Ka xyz x y z
                         else
                         {
                             reflectivity->X = attributes[1].ToFloat();
@@ -616,24 +616,24 @@ namespace
 
                         newMaterial->AmbientReflectivity_Color = reinterpret_cast<B_AmbientReflectivity_Color*>(reflectivity);
                     }
-                    //(FORMAT) Ka <float>
+                        //(FORMAT) Ka <float>
                     else if (attributes.count() == 1)
                     {
-                          AmbientReflectivity_RGB* reflectivity = new AmbientReflectivity_RGB;
-                          float value = attributes[0].ToFloat();
-                          reflectivity->R = value;
-                          reflectivity->G = value;
-                          reflectivity->B = value;
-                          newMaterial->AmbientReflectivity_Color = reinterpret_cast<B_AmbientReflectivity_Color*>(reflectivity);
+                        AmbientReflectivity_RGB* reflectivity = new AmbientReflectivity_RGB;
+                        float value = attributes[0].ToFloat();
+                        reflectivity->R = value;
+                        reflectivity->G = value;
+                        reflectivity->B = value;
+                        newMaterial->AmbientReflectivity_Color = reinterpret_cast<B_AmbientReflectivity_Color*>(reflectivity);
                     }
-                    //(FORMAT) Ka r g b
+                        //(FORMAT) Ka r g b
                     else if (attributes.count() == 3)
                     {
-                         AmbientReflectivity_RGB* reflectivity = new AmbientReflectivity_RGB;
-                         reflectivity->R = attributes[0].ToFloat();
-                         reflectivity->G = attributes[1].ToFloat();
-                         reflectivity->B = attributes[2].ToFloat();
-                         newMaterial->AmbientReflectivity_Color = reinterpret_cast<B_AmbientReflectivity_Color*>(reflectivity);
+                        AmbientReflectivity_RGB* reflectivity = new AmbientReflectivity_RGB;
+                        reflectivity->R = attributes[0].ToFloat();
+                        reflectivity->G = attributes[1].ToFloat();
+                        reflectivity->B = attributes[2].ToFloat();
+                        newMaterial->AmbientReflectivity_Color = reinterpret_cast<B_AmbientReflectivity_Color*>(reflectivity);
                     }
                 }
                 else if (tag == "Kd")
@@ -652,7 +652,7 @@ namespace
 
                         newMaterial->DiffuseReflectivity_Color = reinterpret_cast<B_DiffuseReflectivity_Color*>(reflectivity);
                     }
-                    //(FORMAT) Kd xyz <float> | Kd xyz x y z
+                        //(FORMAT) Kd xyz <float> | Kd xyz x y z
                     else if (attributes[0] == "xyz")
                     {
                         DiffuseReflectivity_XYZ* reflectivity = new DiffuseReflectivity_XYZ;
@@ -665,7 +665,7 @@ namespace
                             reflectivity->Y = value;
                             reflectivity->Z = value;
                         }
-                        //(FORMAT) Kd xyz x y z
+                            //(FORMAT) Kd xyz x y z
                         else
                         {
                             reflectivity->X = attributes[1].ToFloat();
@@ -675,7 +675,7 @@ namespace
 
                         newMaterial->DiffuseReflectivity_Color = reinterpret_cast<B_DiffuseReflectivity_Color*>(reflectivity);
                     }
-                    //(FORMAT) Kd <float>
+                        //(FORMAT) Kd <float>
                     else if (attributes.count() == 1)
                     {
                         DiffuseReflectivity_RGB* reflectivity = new DiffuseReflectivity_RGB;
@@ -685,7 +685,7 @@ namespace
                         reflectivity->B = value;
                         newMaterial->DiffuseReflectivity_Color = reinterpret_cast<B_DiffuseReflectivity_Color*>(reflectivity);
                     }
-                    //(FORMAT) Kd r g b
+                        //(FORMAT) Kd r g b
                     else if (attributes.count() == 3)
                     {
                         DiffuseReflectivity_RGB* reflectivity = new DiffuseReflectivity_RGB;
@@ -713,7 +713,7 @@ namespace
 
                         newMaterial->SpecularReflectivity_Color = reinterpret_cast<B_SpecularReflectivity_Color*>(reflectivity);
                     }
-                    //(FORMAT) Ks xyz <float> | Ks xyz x y z
+                        //(FORMAT) Ks xyz <float> | Ks xyz x y z
                     else if (attributes[0] == "xyz")
                     {
                         SpecularReflectivity_XYZ* reflectivity = new SpecularReflectivity_XYZ;
@@ -726,7 +726,7 @@ namespace
                             reflectivity->Y = value;
                             reflectivity->Z = value;
                         }
-                        //(FORMAT) Ks xyz x y z
+                            //(FORMAT) Ks xyz x y z
                         else
                         {
                             reflectivity->X = attributes[1].ToFloat();
@@ -736,7 +736,7 @@ namespace
 
                         newMaterial->SpecularReflectivity_Color = reinterpret_cast<B_SpecularReflectivity_Color*>(reflectivity);
                     }
-                    //(FORMAT) Ks <float>
+                        //(FORMAT) Ks <float>
                     else if (attributes.count() == 1)
                     {
                         SpecularReflectivity_RGB* reflectivity = new SpecularReflectivity_RGB;
@@ -746,7 +746,7 @@ namespace
                         reflectivity->B = value;
                         newMaterial->SpecularReflectivity_Color = reinterpret_cast<B_SpecularReflectivity_Color*>(reflectivity);
                     }
-                    //(FORMAT) Ks r g b
+                        //(FORMAT) Ks r g b
                     else if (attributes.count() == 3)
                     {
                         SpecularReflectivity_RGB* reflectivity = new SpecularReflectivity_RGB;
@@ -774,7 +774,7 @@ namespace
 
                         newMaterial->TransmissionFilter = reinterpret_cast<B_TransmissionFilter*>(filter);
                     }
-                    //(FORMAT) Tf xyz <float> | Tf xyz x y z
+                        //(FORMAT) Tf xyz <float> | Tf xyz x y z
                     else if (attributes[0] == "xyz")
                     {
                         TransmissionFilter_XYZ* filter = new TransmissionFilter_XYZ;
@@ -787,7 +787,7 @@ namespace
                             filter->Y = value;
                             filter->Z = value;
                         }
-                        //(FORMAT) Tf xyz x y z
+                            //(FORMAT) Tf xyz x y z
                         else
                         {
                             filter->X = attributes[1].ToFloat();
@@ -797,7 +797,7 @@ namespace
 
                         newMaterial->TransmissionFilter = reinterpret_cast<B_TransmissionFilter*>(filter);
                     }
-                    //(FORMAT) Tf <float>
+                        //(FORMAT) Tf <float>
                     else if (attributes.count() == 1)
                     {
                         TransmissionFilter_RGB* filter = new TransmissionFilter_RGB;
@@ -807,7 +807,7 @@ namespace
                         filter->B = value;
                         newMaterial->TransmissionFilter = reinterpret_cast<B_TransmissionFilter*>(filter);
                     }
-                    //(FORMAT) Tf r g b
+                        //(FORMAT) Tf r g b
                     else if (attributes.count() == 3)
                     {
                         TransmissionFilter_RGB* filter = new TransmissionFilter_RGB;
@@ -821,7 +821,7 @@ namespace
                 }
                 else if (tag == "Ns")
                 {
-                     newMaterial->SpecularExponent_Color = attributes[0].ToFloat();
+                    newMaterial->SpecularExponent_Color = attributes[0].ToFloat();
                 }
                 else if (tag == "Ni")
                 {
@@ -833,21 +833,21 @@ namespace
                 }
                 else if (tag == 'd')
                 {
-                     //(FORMAT) d factor
-                     if (attributes.count() == 1)
-                     {
-                           newMaterial->DissolveFactor_Color.Value = attributes[0].ToFloat();
-                     }
-                     //(FORMAT) d -halo factor
-                     else
-                     {
-                         newMaterial->DissolveFactor_Color.Halo = true;
-                         newMaterial->DissolveFactor_Color.Value = attributes[1].ToFloat();
-                     }
+                    //(FORMAT) d factor
+                    if (attributes.count() == 1)
+                    {
+                        newMaterial->DissolveFactor_Color.Value = attributes[0].ToFloat();
+                    }
+                        //(FORMAT) d -halo factor
+                    else
+                    {
+                        newMaterial->DissolveFactor_Color.Halo = true;
+                        newMaterial->DissolveFactor_Color.Value = attributes[1].ToFloat();
+                    }
                 }
                 else if (tag == "sharpness")
                 {
-                      newMaterial->Sharpness_Color = attributes[0].ToInteger(DECIMAL_A);
+                    newMaterial->Sharpness_Color = attributes[0].ToInteger(DECIMAL_A);
                 }
                 else if (tag == "map_Ka")
                 {
@@ -906,7 +906,7 @@ namespace
                         {
                             o_option* option = new o_option;
 
-                            option->U =  attributes[beginIndex + 1].ToFloat();;
+                            option->U =  attributes[beginIndex + 1].ToFloat();
 
                             //if there are 'v' and 'w' fields
                             if (attributes[beginIndex + 2].IsInteger() || attributes[beginIndex + 2].IsFractional(true))
@@ -926,7 +926,7 @@ namespace
                         {
                             s_option* option = new s_option;
 
-                            option->U =  attributes[beginIndex + 1].ToFloat();;
+                            option->U =  attributes[beginIndex + 1].ToFloat();
 
                             //if there are 'v' and 'w' fields
                             if (attributes[beginIndex + 2].IsInteger() || attributes[beginIndex + 2].IsFractional(true))
@@ -946,7 +946,7 @@ namespace
                         {
                             t_option* option = new t_option;
 
-                            option->U =  attributes[beginIndex + 1].ToFloat();;
+                            option->U =  attributes[beginIndex + 1].ToFloat();
 
                             //if there are 'v' and 'w' fields
                             if (attributes[beginIndex + 2].IsInteger() || attributes[beginIndex + 2].IsFractional(true))
@@ -1025,7 +1025,7 @@ namespace
                         {
                             o_option* option = new o_option;
 
-                            option->U =  attributes[beginIndex + 1].ToFloat();;
+                            option->U =  attributes[beginIndex + 1].ToFloat();
 
                             //if there are 'v' and 'w' fields
                             if (attributes[beginIndex + 2].IsInteger() || attributes[beginIndex + 2].IsFractional(true))
@@ -1045,7 +1045,7 @@ namespace
                         {
                             s_option* option = new s_option;
 
-                            option->U =  attributes[beginIndex + 1].ToFloat();;
+                            option->U =  attributes[beginIndex + 1].ToFloat();
 
                             //if there are 'v' and 'w' fields
                             if (attributes[beginIndex + 2].IsInteger() || attributes[beginIndex + 2].IsFractional(true))
@@ -1065,7 +1065,7 @@ namespace
                         {
                             t_option* option = new t_option;
 
-                            option->U =  attributes[beginIndex + 1].ToFloat();;
+                            option->U =  attributes[beginIndex + 1].ToFloat();
 
                             //if there are 'v' and 'w' fields
                             if (attributes[beginIndex + 2].IsInteger() || attributes[beginIndex + 2].IsFractional(true))
@@ -1144,7 +1144,7 @@ namespace
                         {
                             o_option* option = new o_option;
 
-                            option->U =  attributes[beginIndex + 1].ToFloat();;
+                            option->U =  attributes[beginIndex + 1].ToFloat();
 
                             //if there are 'v' and 'w' fields
                             if (attributes[beginIndex + 2].IsInteger() || attributes[beginIndex + 2].IsFractional(true))
@@ -1164,7 +1164,7 @@ namespace
                         {
                             s_option* option = new s_option;
 
-                            option->U =  attributes[beginIndex + 1].ToFloat();;
+                            option->U =  attributes[beginIndex + 1].ToFloat();
 
                             //if there are 'v' and 'w' fields
                             if (attributes[beginIndex + 2].IsInteger() || attributes[beginIndex + 2].IsFractional(true))
@@ -1184,7 +1184,7 @@ namespace
                         {
                             t_option* option = new t_option;
 
-                            option->U =  attributes[beginIndex + 1].ToFloat();;
+                            option->U =  attributes[beginIndex + 1].ToFloat();
 
                             //if there are 'v' and 'w' fields
                             if (attributes[beginIndex + 2].IsInteger() || attributes[beginIndex + 2].IsFractional(true))
@@ -1268,7 +1268,7 @@ namespace
                         {
                             o_option* option = new o_option;
 
-                            option->U =  attributes[beginIndex + 1].ToFloat();;
+                            option->U =  attributes[beginIndex + 1].ToFloat();
 
                             //if there are 'v' and 'w' fields
                             if (attributes[beginIndex + 2].IsInteger() || attributes[beginIndex + 2].IsFractional(true))
@@ -1288,7 +1288,7 @@ namespace
                         {
                             s_option* option = new s_option;
 
-                            option->U =  attributes[beginIndex + 1].ToFloat();;
+                            option->U =  attributes[beginIndex + 1].ToFloat();
 
                             //if there are 'v' and 'w' fields
                             if (attributes[beginIndex + 2].IsInteger() || attributes[beginIndex + 2].IsFractional(true))
@@ -1308,7 +1308,7 @@ namespace
                         {
                             t_option* option = new t_option;
 
-                            option->U =  attributes[beginIndex + 1].ToFloat();;
+                            option->U =  attributes[beginIndex + 1].ToFloat();
 
                             //if there are 'v' and 'w' fields
                             if (attributes[beginIndex + 2].IsInteger() || attributes[beginIndex + 2].IsFractional(true))
@@ -1392,7 +1392,7 @@ namespace
                         {
                             o_option* option = new o_option;
 
-                            option->U =  attributes[beginIndex + 1].ToFloat();;
+                            option->U =  attributes[beginIndex + 1].ToFloat();
 
                             //if there are 'v' and 'w' fields
                             if (attributes[beginIndex + 2].IsInteger() || attributes[beginIndex + 2].IsFractional(true))
@@ -1412,7 +1412,7 @@ namespace
                         {
                             s_option* option = new s_option;
 
-                            option->U =  attributes[beginIndex + 1].ToFloat();;
+                            option->U =  attributes[beginIndex + 1].ToFloat();
 
                             //if there are 'v' and 'w' fields
                             if (attributes[beginIndex + 2].IsInteger() || attributes[beginIndex + 2].IsFractional(true))
@@ -1432,7 +1432,7 @@ namespace
                         {
                             t_option* option = new t_option;
 
-                            option->U =  attributes[beginIndex + 1].ToFloat();;
+                            option->U =  attributes[beginIndex + 1].ToFloat();
 
                             //if there are 'v' and 'w' fields
                             if (attributes[beginIndex + 2].IsInteger() || attributes[beginIndex + 2].IsFractional(true))
@@ -1520,7 +1520,7 @@ namespace
                         {
                             o_option* option = new o_option;
 
-                            option->U =  attributes[beginIndex + 1].ToFloat();;
+                            option->U =  attributes[beginIndex + 1].ToFloat();
 
                             //if there are 'v' and 'w' fields
                             if (attributes[beginIndex + 2].IsInteger() || attributes[beginIndex + 2].IsFractional(true))
@@ -1540,7 +1540,7 @@ namespace
                         {
                             s_option* option = new s_option;
 
-                            option->U =  attributes[beginIndex + 1].ToFloat();;
+                            option->U =  attributes[beginIndex + 1].ToFloat();
 
                             //if there are 'v' and 'w' fields
                             if (attributes[beginIndex + 2].IsInteger() || attributes[beginIndex + 2].IsFractional(true))
@@ -1560,7 +1560,7 @@ namespace
                         {
                             t_option* option = new t_option;
 
-                            option->U =  attributes[beginIndex + 1].ToFloat();;
+                            option->U =  attributes[beginIndex + 1].ToFloat();
 
                             //if there are 'v' and 'w' fields
                             if (attributes[beginIndex + 2].IsInteger() || attributes[beginIndex + 2].IsFractional(true))
@@ -1644,7 +1644,7 @@ namespace
                         {
                             o_option* option = new o_option;
 
-                            option->U =  attributes[beginIndex + 1].ToFloat();;
+                            option->U =  attributes[beginIndex + 1].ToFloat();
 
                             //if there are 'v' and 'w' fields
                             if (attributes[beginIndex + 2].IsInteger() || attributes[beginIndex + 2].IsFractional(true))
@@ -1664,7 +1664,7 @@ namespace
                         {
                             s_option* option = new s_option;
 
-                            option->U =  attributes[beginIndex + 1].ToFloat();;
+                            option->U =  attributes[beginIndex + 1].ToFloat();
 
                             //if there are 'v' and 'w' fields
                             if (attributes[beginIndex + 2].IsInteger() || attributes[beginIndex + 2].IsFractional(true))
@@ -1684,7 +1684,7 @@ namespace
                         {
                             t_option* option = new t_option;
 
-                            option->U =  attributes[beginIndex + 1].ToFloat();;
+                            option->U =  attributes[beginIndex + 1].ToFloat();
 
                             //if there are 'v' and 'w' fields
                             if (attributes[beginIndex + 2].IsInteger() || attributes[beginIndex + 2].IsFractional(true))
@@ -1775,7 +1775,7 @@ namespace
                         {
                             o_option* option = new o_option;
 
-                            option->U =  attributes[beginIndex + 1].ToFloat();;
+                            option->U =  attributes[beginIndex + 1].ToFloat();
 
                             //if there are 'v' and 'w' fields
                             if (attributes[beginIndex + 2].IsInteger() || attributes[beginIndex + 2].IsFractional(true))
@@ -1795,7 +1795,7 @@ namespace
                         {
                             s_option* option = new s_option;
 
-                            option->U =  attributes[beginIndex + 1].ToFloat();;
+                            option->U =  attributes[beginIndex + 1].ToFloat();
 
                             //if there are 'v' and 'w' fields
                             if (attributes[beginIndex + 2].IsInteger() || attributes[beginIndex + 2].IsFractional(true))
@@ -1815,7 +1815,7 @@ namespace
                         {
                             t_option* option = new t_option;
 
-                            option->U =  attributes[beginIndex + 1].ToFloat();;
+                            option->U =  attributes[beginIndex + 1].ToFloat();
 
                             //if there are 'v' and 'w' fields
                             if (attributes[beginIndex + 2].IsInteger() || attributes[beginIndex + 2].IsFractional(true))
@@ -1936,7 +1936,7 @@ namespace
                         {
                             o_option* option = new o_option;
 
-                            option->U =  attributes[beginIndex + 1].ToFloat();;
+                            option->U =  attributes[beginIndex + 1].ToFloat();
 
                             //if there are 'v' and 'w' fields
                             if (attributes[beginIndex + 2].IsInteger() || attributes[beginIndex + 2].IsFractional(true))
@@ -1956,7 +1956,7 @@ namespace
                         {
                             s_option* option = new s_option;
 
-                            option->U =  attributes[beginIndex + 1].ToFloat();;
+                            option->U =  attributes[beginIndex + 1].ToFloat();
 
                             //if there are 'v' and 'w' fields
                             if (attributes[beginIndex + 2].IsInteger() || attributes[beginIndex + 2].IsFractional(true))
@@ -1976,7 +1976,7 @@ namespace
                         {
                             t_option* option = new t_option;
 
-                            option->U =  attributes[beginIndex + 1].ToFloat();;
+                            option->U =  attributes[beginIndex + 1].ToFloat();
 
                             //if there are 'v' and 'w' fields
                             if (attributes[beginIndex + 2].IsInteger() || attributes[beginIndex + 2].IsFractional(true))
