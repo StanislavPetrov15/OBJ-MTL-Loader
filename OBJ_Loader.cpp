@@ -1,55 +1,8 @@
-/* TASKS:
+(TO-FIX) (A) it's possible that the different 3D modelling programs use different byte sequence to specify a new line;
+           for example Blender uses '\n'; it is also possible that few different new-line sequences are used;
+           Parse_MTL() must support different new-line sequences
 
-    polygonal geometry:
-    + елемент 'l'
-    + елемент 'f'
-    + елемент 'v'
-    + елемент 'vt'
-    + елемент 'vn'
-    + елемент 'g'
-    + елемент 's'
-    + елемент 'o'
-
-    free-form geometry (curves/surfaces):
-    * елемент 'cstype'
-    * елемент 'p'
-    * елемент 'vp'
-    * елемент 'parm'
-    * елемент 'trim'
-    * елемент 'hole'
-    * елемент 'scrv'
-    * елемент 'sp'
-    * елемент 'end'
-    * елемент 'con'
-    * елемент 'deg'
-    * елемент 'step'
-    * елемент 'curv'
-    * елемент 'curv2'
-    * елемент 'surf'
-    * елемент 'ctech'
-    * елемент 'stech'
-    * елемент 'mg'
-
-    display/render attributes:
-    * елемент 'bevel'
-    * елемент 'c_interp'
-    * елемент 'd_interp'
-    * елемент 'lod'
-    + елемент 'usemtl'
-    * елемент 'usemap'
-    + елемент 'mtllib'
-    * елемент 'maplib'
-    * елемент 'shadow_obj'
-    * елемент 'trace_obj'
-
-    (TO-FIX) (A) it's possible that the different 3D modelling programs use different byte sequence to specify a new line;
-               for example Blender uses '\n'; it is also possible that few different new-line sequences are used;
-               Parse_MTL() must support different new-line sequences
-
-    (TO-FIX) line-spanning (by using '\' at the end of the line) is not supported */
-
-
-
+(TO-FIX) line-spanning (by using '\' at the end of the line) is not supported */
 
 //(PUBLIC)
 
